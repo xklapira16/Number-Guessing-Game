@@ -11,7 +11,7 @@ $PSQL "CREATE TABLE IF NOT EXISTS users (
 );"
 
 # Prompt for username
-read -p "Enter your username: " USERNAME
+read -p "Enter your username:" USERNAME
 
 # Check if the username is longer than 22 characters
 if [[ ${#USERNAME} -gt 22 ]]; then
