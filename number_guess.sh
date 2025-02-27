@@ -32,13 +32,16 @@ else
   echo "Welcome back, $USERNAME! You have played $GAMES_PLAYED games, and your best game took $BEST_GAME guesses."
 fi
 
+# Print the prompt for guessing the secret number
+echo "Guess the secret number between 1 and 1000:"
+
 # Generate a random number between 1 and 1000
 SECRET_NUMBER=$(( RANDOM % 1000 + 1 ))
 NUMBER_OF_GUESSES=0
 
 # Start guessing loop
 while true; do
-  read -p "Guess the secret number between 1 and 1000: " GUESS
+  read GUESS
 
   # Check if the input is an integer
   if ! [[ $GUESS =~ ^[0-9]+$ ]]; then
