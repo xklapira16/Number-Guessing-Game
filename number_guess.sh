@@ -3,12 +3,6 @@
 # Database connection variable
 PSQL="psql --username=freecodecamp --dbname=number_guess -t --no-align -c"
 
-# Create the database if it doesn't exist
-# Note: You may need to create the database manually if it doesn't exist.
-# This script assumes the database 'number_guess' already exists.
-# If it doesn't, you can create it using the following command in psql:
-# CREATE DATABASE number_guess;
-
 # Create the users table if it doesn't exist
 $PSQL "CREATE TABLE IF NOT EXISTS users (
     username VARCHAR(22) PRIMARY KEY,
@@ -18,6 +12,12 @@ $PSQL "CREATE TABLE IF NOT EXISTS users (
 
 # Prompt for username
 read -p "Enter your username: " USERNAME
+
+# Check if the username is longer than 22 characters
+if [[ ${#USERNAME} -gt 22 ]]; then
+  echo "Username must be 22 characters or less."
+  exit 1
+fi
 
 # Check if the user exists
 USER_INFO=$($PSQL "SELECT games_played, best_game FROM users WHERE username = '$USERNAME';")
